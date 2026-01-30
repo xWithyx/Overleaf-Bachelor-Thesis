@@ -2,7 +2,7 @@
 This chapter reports the empirical outcomes of the controlled experiment on LLM based unit test generation for real world Csharp projects. Results are derived from the stored JSON RunRecords and the aggregated CSV exports.
 
 \section{Dataset overview\label{sec:results_overview}}
-In total, 142 RunRecords were parsed and aggregated. The dataset consists of 50 runs for Variant A (baseline), 54 runs for Variant B (single shot generation), and 38 runs for Variant C (repair loop). Variant B includes pilot and rerun records in the raw aggregation. For statistical analysis, Variant B can be deduplicated to one record per method identifier, preferring the most recent record with prompt version v1.1 (as defined in the experiment log).
+In total, 142 RunRecords were parsed and aggregated. The dataset consists of 50 runs for Variant A (baseline)\footnote{Variant A records use the internal status \texttt{baseline\_complete} to distinguish them from LLM-generated test outcomes, which use the status \texttt{completed}. Both indicate successful execution but originate from different experiment branches.}, 54 runs for Variant B (single shot generation), and 38 runs for Variant C (repair loop). Variant B includes pilot and rerun records in the raw aggregation. For statistical analysis, Variant B can be deduplicated to one record per method identifier, preferring the most recent record with prompt version v1.1 (as defined in the experiment log).
 
 \section{Outcome distribution by variant\label{sec:results_outcomes}}
 Table \ref{tab:status_breakdown} summarizes the final outcome counts by variant.
@@ -44,7 +44,8 @@ C (Repair loop) & 15.8\% & 15.8\% & 15.8\% \\
 \end{table}
 
 \section{Coverage and focal execution\label{sec:results_coverage}}
-Coverage was measured where the coverage collector was available. Coverage metrics are computed for completed runs only.
+Coverage was measured where the coverage collector was available.\footnote{A reported coverage of 0.0\% indicates that coverage instrumentation succeeded but the focal method was not executed. This differs from \emph{coverage unavailable}, where the collector failed or was not present, and no coverage value can be interpreted.} Coverage metrics are computed for completed runs only.
+
 
 \begin{table}[h]
 \centering

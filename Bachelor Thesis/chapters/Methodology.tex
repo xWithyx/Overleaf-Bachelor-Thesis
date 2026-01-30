@@ -46,7 +46,7 @@ For each selected project, eligible public methods are extracted via static anal
 After sampling, the project list and method list are treated as frozen inputs and are not modified. Prompt templates are versioned and stored. Each RunRecord contains metadata to trace the prompt version and experiment variant.
 
 \section{Model and prompt templates\label{sec:model_and_prompts}}
-The primary model is GPT 5 mini. The exact model identifier returned by the API is recorded in the logs for reproducibility. Prompt templates are versioned, and Variant B uses the frozen prompt version v1.1. Templates enforce deterministic tests, forbid external services, and restrict file system access to temporary paths created and cleaned up within the test.
+The primary model is GPT 5 mini.\footnote{The exact API identifier is \texttt{gpt-5-mini-2025-08-07}, as recorded in the RunRecord metadata. This identifier ensures reproducibility and allows future studies to reference the same model version.} The exact model identifier returned by the API is recorded in the logs for reproducibility. Prompt templates are versioned, and Variant B uses the frozen prompt version v1.1. Templates enforce deterministic tests, forbid external services, and restrict file system access to temporary paths created and cleaned up within the test.
 
 \section{Experiment execution\label{sec:execution}}
 \subsection{Common execution pipeline}
